@@ -1,0 +1,320 @@
+:root {
+    /* Soft, Eye-pleasing Color Palette */
+    --bg-color: #FAF8F5; /* Warm Off-White */
+    --text-main: #3E403D; /* Soft Dark Gray / Charcoal */
+    --text-muted: #7A8077;
+    --accent-color: #8CA88F; /* Soft Sage Green */
+    --accent-hover: #759278;
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling, full screen layout */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* Header Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+.auth-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.auth-link:hover {
+    color: var(--accent-color);
+}
+
+/* Main Layout */
+.container {
+    display: flex;
+    flex: 1;
+    margin-top: 80px; /* offset for fixed header */
+    height: calc(100vh - 80px);
+}
+
+/* Left Section */
+.left-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.text-content {
+    max-width: 500px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 40px;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.glass-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.2));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.glass-btn span {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.glass-btn:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.glass-btn:hover span {
+    transform: translateX(5px);
+}
+
+/* Right Section - Image Slider */
+.right-section {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out; /* Smooth crossfade */
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Left Pagination */
+.left-pagination {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 10px;
+    border-radius: 30px;
+    z-index: 50;
+}
+
+.glass-menu {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: var(--glass-shadow);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-muted);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dot.active {
+    opacity: 1;
+    background-color: var(--accent-color);
+    transform: scale(1.5);
+}
+
+/* Right Sidebar */
+.right-sidebar {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 50;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.sidebar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.8rem;
+    transition: background 0.3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-item .icon {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.floating-btn.accent {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.floating-btn.accent:hover {
+    box-shadow: 0 10px 30px rgba(140, 168, 143, 0.4);
+}
+
+/* Pochita Mascot Additions */
+.pochita-btn {
+    position: relative;
+}
+
+.pochita-mascot {
+    position: absolute;
+    top: -45px;
+    right: -20px;
+    width: 65px;
+    height: auto;
+    transform: rotate(15deg);
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    mix-blend-mode: multiply;
+    z-index: 20;
+}
