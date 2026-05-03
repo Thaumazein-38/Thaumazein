@@ -318,3 +318,71 @@ h1 {
     mix-blend-mode: multiply;
     z-index: 20;
 }
+
+/* Domain Expansion Effect */
+.domain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.domain-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+    animation: expandDomain 3s forwards;
+}
+
+.gojo-effect {
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+}
+
+.domain-overlay.active .gojo-effect {
+    opacity: 1;
+    transform: scale(1);
+    animation: pulseText 2s infinite alternate;
+}
+
+.domain-text {
+    font-size: 5rem;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(100, 200, 255, 1);
+    margin-bottom: 10px;
+}
+
+.domain-subtext {
+    font-size: 2rem;
+    letter-spacing: 10px;
+    text-shadow: 0 0 10px rgba(100, 200, 255, 0.8);
+}
+
+@keyframes expandDomain {
+    0% {
+        background-color: transparent;
+    }
+    30% {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+    100% {
+        background-color: rgba(20, 50, 150, 0.85); /* Deep glowing blue */
+        backdrop-filter: blur(10px);
+    }
+}
+
+@keyframes pulseText {
+    0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 40px rgba(255, 255, 255, 1)); }
+}

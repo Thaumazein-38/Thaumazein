@@ -18,4 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start the automatic slideshow
     setInterval(nextSlide, slideInterval);
+
+    // Domain Expansion Effect (Every 10 seconds)
+    const domainOverlay = document.getElementById('domain-expansion-overlay');
+    
+    if (domainOverlay) {
+        setInterval(() => {
+            // Trigger Domain Expansion
+            domainOverlay.classList.add('active');
+            
+            // Remove it after 4 seconds to go back to normal
+            setTimeout(() => {
+                domainOverlay.classList.remove('active');
+            }, 4000);
+            
+        }, 10000); // 10 seconds interval
+    }
 });
