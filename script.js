@@ -34,4 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
             
         }, 10000); // 10 seconds interval
     }
+
+    // Chainsaw Man Denji Effect (Every 3 seconds)
+    const denjiOverlay = document.getElementById('denji-overlay');
+    
+    if (denjiOverlay) {
+        setInterval(() => {
+            // Trigger Denji Effect
+            denjiOverlay.classList.add('active');
+            
+            // Add cut effect to body when slash happens (1s after Denji appears)
+            setTimeout(() => {
+                document.body.classList.add('screen-cut');
+            }, 1000);
+            
+            // Clean up after animation finishes
+            setTimeout(() => {
+                denjiOverlay.classList.remove('active');
+                document.body.classList.remove('screen-cut');
+            }, 2500);
+            
+        }, 3000); // 3 seconds interval
+    }
 });

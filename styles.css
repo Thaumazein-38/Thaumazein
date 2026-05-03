@@ -1,9 +1,12 @@
 :root {
     /* Soft, Eye-pleasing Color Palette */
-    --bg-color: #FAF8F5; /* Warm Off-White */
-    --text-main: #3E403D; /* Soft Dark Gray / Charcoal */
+    --bg-color: #FAF8F5;
+    /* Warm Off-White */
+    --text-main: #3E403D;
+    /* Soft Dark Gray / Charcoal */
     --text-muted: #7A8077;
-    --accent-color: #8CA88F; /* Soft Sage Green */
+    --accent-color: #8CA88F;
+    /* Soft Sage Green */
     --accent-hover: #759278;
     --glass-bg: rgba(255, 255, 255, 0.5);
     --glass-border: rgba(255, 255, 255, 0.8);
@@ -21,7 +24,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     height: 100vh;
-    overflow: hidden; /* Prevent scrolling, full screen layout */
+    overflow: hidden;
+    /* Prevent scrolling, full screen layout */
     display: flex;
     flex-direction: column;
 }
@@ -104,7 +108,8 @@ body {
 .container {
     display: flex;
     flex: 1;
-    margin-top: 80px; /* offset for fixed header */
+    margin-top: 80px;
+    /* offset for fixed header */
     height: calc(100vh - 80px);
 }
 
@@ -153,10 +158,10 @@ h1 {
     text-decoration: none;
     color: var(--text-main);
     font-weight: 500;
-    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.2));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.8);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
 
@@ -166,7 +171,7 @@ h1 {
 }
 
 .glass-btn:hover {
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
 }
 
@@ -196,7 +201,8 @@ h1 {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out; /* Smooth crossfade */
+    transition: opacity 1.5s ease-in-out;
+    /* Smooth crossfade */
 }
 
 .slide.active {
@@ -314,7 +320,7 @@ h1 {
     height: auto;
     transform: rotate(15deg);
     pointer-events: none;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     mix-blend-mode: multiply;
     z-index: 20;
 }
@@ -373,16 +379,268 @@ h1 {
     0% {
         background-color: transparent;
     }
+
     30% {
         background-color: rgba(0, 0, 0, 0.9);
     }
+
     100% {
-        background-color: rgba(20, 50, 150, 0.85); /* Deep glowing blue */
+        background-color: rgba(20, 50, 150, 0.85);
+        /* Deep glowing blue */
         backdrop-filter: blur(10px);
     }
 }
 
 @keyframes pulseText {
-    0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8)); }
-    100% { transform: scale(1.05); filter: drop-shadow(0 0 40px rgba(255, 255, 255, 1)); }
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8));
+    }
+
+    100% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 40px rgba(255, 255, 255, 1));
+    }
+}
+
+/* Chainsaw Man Denji Effect */
+.denji-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slash-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slash-line {
+    position: absolute;
+    width: 0;
+    height: 6px;
+    background: #ff0000;
+    box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+    transform: rotate(-25deg);
+    opacity: 0;
+}
+
+.slash-flash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    mix-blend-mode: overlay;
+}
+
+.denji-character {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0) translateX(-500px);
+    opacity: 0;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.8));
+}
+
+.denji-character img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    border: 8px solid #ff0000;
+    box-shadow: 0 0 50px #ff0000;
+}
+
+.denji-character h2 {
+    color: #fff;
+    font-size: 4rem;
+    font-weight: 900;
+    text-shadow: 4px 4px 0 #ff0000, -4px -4px 0 #ff0000, 0 0 30px #ff0000;
+    margin-top: -30px;
+    z-index: 2;
+    transform: skewX(-15deg);
+    font-family: 'Black Han Sans', sans-serif;
+    letter-spacing: -2px;
+}
+
+.denji-character .chainsaw {
+    font-size: 10rem;
+    position: absolute;
+    top: -60px;
+    right: -100px;
+    transform: rotate(45deg);
+    filter: drop-shadow(0 0 30px red);
+}
+
+/* Screen split effect on body */
+body.screen-cut {
+    animation: screenShake 0.6s cubic-bezier(.36, .07, .19, .97) both, screenSplit 2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes screenShake {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0);
+        filter: hue-rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-30px, 20px) rotate(-3deg);
+        filter: hue-rotate(90deg) contrast(2);
+    }
+
+    20% {
+        transform: translate(40px, -20px) rotate(4deg);
+        filter: invert(1) hue-rotate(180deg);
+    }
+
+    30% {
+        transform: translate(-40px, 30px) rotate(-4deg);
+        filter: hue-rotate(270deg) contrast(3);
+        background-color: #ff0000;
+    }
+
+    40% {
+        transform: translate(30px, -30px) rotate(3deg);
+        filter: invert(0.8) hue-rotate(360deg);
+    }
+
+    50% {
+        transform: translate(-20px, 20px) rotate(-2deg);
+        filter: contrast(1.5) saturate(3);
+    }
+
+    60% {
+        transform: translate(20px, -20px) rotate(2deg);
+    }
+
+    70% {
+        transform: translate(-10px, 10px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(10px, -10px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(-5px, 5px) rotate(0deg);
+    }
+}
+
+@keyframes screenSplit {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        transform: skewY(0) scale(1);
+    }
+
+    5% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        transform: skewY(0) scale(1.05);
+    }
+
+    10% {
+        transform: skewY(-3deg) scale(1.05) translate(10px, -10px);
+    }
+
+    20% {
+        transform: skewY(-2deg) scale(1.02) translate(5px, -5px);
+    }
+
+    100% {
+        transform: skewY(0) scale(1) translate(0, 0);
+    }
+}
+
+/* Animations for Denji */
+.denji-overlay.active .denji-character {
+    animation: denjiAppear 2.5s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+.denji-overlay.active .slash-line {
+    animation: slashStrike 0.8s cubic-bezier(0.8, 0, 0.2, 1) 1s forwards;
+}
+
+.denji-overlay.active .slash-flash {
+    animation: slashFlash 0.5s ease-out 1s forwards;
+}
+
+@keyframes denjiAppear {
+    0% {
+        transform: scale(0) translateX(-500px) rotate(-45deg);
+        opacity: 0;
+    }
+
+    20% {
+        transform: scale(1.2) translateX(0) rotate(10deg);
+        opacity: 1;
+    }
+
+    30% {
+        transform: scale(1) translateX(0) rotate(0);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(1) translateX(0) rotate(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2) translateX(800px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+@keyframes slashStrike {
+    0% {
+        width: 0;
+        opacity: 1;
+        transform: rotate(-25deg) translateX(-50vw);
+    }
+
+    50% {
+        width: 250vw;
+        opacity: 1;
+        transform: rotate(-25deg) translateX(0);
+        background: #fff;
+    }
+
+    100% {
+        width: 250vw;
+        opacity: 0;
+        transform: rotate(-25deg) translateX(50vw);
+    }
+}
+
+@keyframes slashFlash {
+    0% {
+        opacity: 0;
+        background: white;
+    }
+
+    50% {
+        opacity: 1;
+        background: red;
+    }
+
+    100% {
+        opacity: 0;
+        background: transparent;
+    }
 }
